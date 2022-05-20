@@ -1,0 +1,2 @@
+# MED_Endabank_Kubernetes_Deployment
+Kubernets deployments for Endabank application
