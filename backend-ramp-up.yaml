@@ -1,0 +1,36 @@
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: devops-ramp-up-namespace
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-backend-ramp-up
+  labels:
+    app: backend-ramp-up
+spec:
+  selector:
+    matchLabels:
+      app: backend-ramp-up
+  template:
+    metadata:
+      labels:
+        app: backend-ramp-up
+    spec:
+      containers:
+      - image: davidsanchez21/devops-ramp-up-second-part:backend-ramp-up
+        name: backend-ramp-up
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: "10.254.48.36"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASS
+          value: "admin"
+        - name: DB_NAME
+          value: "movie_db"
+  replicas: 2
+
