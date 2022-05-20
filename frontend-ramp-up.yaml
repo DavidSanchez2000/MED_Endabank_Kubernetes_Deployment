@@ -1,0 +1,30 @@
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: devops-ramp-up-namespace
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-frontend-ramp-up
+  labels:
+    app: frontend-ramp-up
+spec:
+  selector:
+    matchLabels:
+      app: frontend-ramp-up
+  template:
+    metadata:
+      labels:
+        app: frontend-ramp-up #backend connection
+    spec:
+      containers:
+      - image: davidsanchez21/devops-ramp-up-second-part:frontend-ramp-up
+        name: frontend-ramp-up
+        ports:
+        - containerPort: 3030
+        env:
+        - name: BACKEND_URL
+          value: "10.99.181.147:3000" #cluster-ip (backend-service:3000)
+
+  replicas: 2
